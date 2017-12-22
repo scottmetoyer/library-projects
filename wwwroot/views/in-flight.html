@@ -1,3 +1,4 @@
+<div ng-controller="ProjectsCtrl as projects">
 <div class="page-header m-b-0">
   <h1><span class="text-muted font-weight-light">Projects / </span>In-flight</h1>
 </div>
@@ -14,7 +15,7 @@
           <table class="table table-bordered table-striped" id="projects">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>Key</th>
                   <th>Name</th>
                   <th>Owner</th>
                   <th>Lead</th>
@@ -23,29 +24,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>mdo</td>
-                  <td>mdo</td>
-                  <td>mdo</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>mdo</td>
-                  <td>mdo</td>
-                  <td>mdo</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>mdo</td>
-                  <td>mdo</td>
-                  <td>mdo</td>
+                <tr ng-repeat="p in projects.projects">
+                  <td>{{ p.key }}</td>
+                  <td>{{ p.name }}</td>
+                  <td>{{ p.owner }}</td>
+                  <td>{{ p.lead }}</td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
           </table>
@@ -66,4 +51,4 @@
     });
   });
 </script>
-
+</div>
