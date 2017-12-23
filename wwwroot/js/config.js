@@ -58,6 +58,17 @@
             return $ocLazyLoad.load([]);
           },
         },
+      })
+      .state('pages.create-project', {
+        url: '/create-project',
+        templateUrl: 'views/create-project.html',
+        data: { pageTitle: 'Create a project' },
+        resolve: {
+          // Load plugins here
+          loadPlugin: function ($ocLazyLoad) {
+            return $ocLazyLoad.load([]);
+          },
+        },
       });
   };
 
