@@ -8,103 +8,106 @@
 </div>
 <hr class="page-wide-block m-t-0">
 <div class="row">
-  <div class="col-md-12">
-      <div class="panel">
-          <div class="panel-heading">
-              <div class="panel-title">Please enter the project details</div>
-          </div>
+    <div class="col-md-12">
+        <div class="panel">
+            <div ng-controller="ProjectCtrl as project">
+                <form ng-submit="project.createProject()">
+                    <div class="panel-heading">
+                        <div class="panel-title">Please enter the project details</div>
+                    </div>
 
-          <div class="panel-body">
-              <form>
-                  <fieldset class="form-group">
-                      <label>Name</label>
-                      <input class="form-control" type="text">
-                  </fieldset>
-                  <fieldset class="form-group">
-                      <label>Mission Statement</label>
-                      <textarea class="form-control" placeholder="Describe what a mission statement is"></textarea>
-                  </fieldset>
-                  <fieldset class="form-group">
-                      <label>Owner/Stakeholder</label>
-                      <input class="form-control" type="text">
-                  </fieldset>
-                  <fieldset class="form-group">
-                      <label>Cyberinfrastructure Lead</label>
-                      <input class="form-control" type="text">
-                  </fieldset>
+                    <div class="panel-body">
 
-                  <fieldset class="form-group">
-                      <label class="control-label">Has a Project Plan?</label>
-                      <label class="switcher switcher-success">
-                          <input type="checkbox" checked="">
-                          <div class="switcher-indicator">
-                              <div class="switcher-yes">YES</div>
-                              <div class="switcher-no">NO</div>
-                          </div>
-                          &nbsp;
-                      </label>
-                  </fieldset>
+                            <fieldset class="form-group">
+                                <label>Name</label>
+                                <input class="form-control" type="text" ng-model="formData.name">
+                            </fieldset>
+                            <fieldset class="form-group">
+                                <label>Project purpose</label>
+                                <textarea class="form-control" placeholder="Why are we doing this project?" ng-model="formData.purpose"></textarea>
+                            </fieldset>
+                            <fieldset class="form-group">
+                                <label>Owner/Stakeholder</label>
+                                <input class="form-control" type="text" ng-model="formData.owner">
+                            </fieldset>
+                            <fieldset class="form-group">
+                                <label>Cyberinfrastructure Lead</label>
+                                <input class="form-control" type="text" ng-model="formData.lead">
+                            </fieldset>
 
-                  <fieldset class="form-group">
-                      <label>Link to the Project Plan</label>
-                      <input class="form-control" type="text" />
-                  </fieldset>
+                            <fieldset class="form-group">
+                                <label class="control-label">Has a Project Plan?</label>
+                                <label class="switcher switcher-success">
+                                    <input type="checkbox" checked="" ng-model="formData.hasProjectPlan">
+                                    <div class="switcher-indicator">
+                                        <div class="switcher-yes">YES</div>
+                                        <div class="switcher-no">NO</div>
+                                    </div>
+                                    &nbsp;
+                                </label>
+                            </fieldset>
 
-                  <fieldset class="form-group">
-                      <label class="control-label">Has a Confluence Wiki?</label>
-                      <label class="switcher switcher-success">
-                          <input type="checkbox" checked="">
-                          <div class="switcher-indicator">
-                              <div class="switcher-yes">YES</div>
-                              <div class="switcher-no">NO</div>
-                          </div>
-                          &nbsp;
-                      </label>
-                  </fieldset>
+                            <fieldset class="form-group">
+                                <label>Link to the Project Plan</label>
+                                <input class="form-control" type="text" ng-model="formData.projectPlanLink" />
+                            </fieldset>
 
-                  <fieldset class="form-group">
-                      <label>Link to the Confluence Wiki</label>
-                      <input class="form-control" type="text" />
-                  </fieldset>
+                            <fieldset class="form-group">
+                                <label class="control-label">Has a Confluence Wiki?</label>
+                                <label class="switcher switcher-success">
+                                    <input type="checkbox" checked="" ng-model="formData.hasWiki">
+                                    <div class="switcher-indicator">
+                                        <div class="switcher-yes">YES</div>
+                                        <div class="switcher-no">NO</div>
+                                    </div>
+                                    &nbsp;
+                                </label>
+                            </fieldset>
 
-                  <div class="form-group">
-                      <label class="control-label">Has a JIRA Project?</label>
-                      <label class="switcher switcher-success">
-                          <input type="checkbox" checked="">
-                          <div class="switcher-indicator">
-                              <div class="switcher-yes">YES</div>
-                              <div class="switcher-no">NO</div>
-                          </div>
-                          &nbsp;
-                      </label>
-                  </div>
-                  <fieldset class="form-group">
-                      <label>Link to the JIRA Project</label>
-                      <input class="form-control" type="text" />
-                  </fieldset>
+                            <fieldset class="form-group">
+                                <label>Link to the Confluence Wiki</label>
+                                <input class="form-control" type="text" ng-model="formData.wikiLink" />
+                            </fieldset>
 
-                  <div class="form-group">
-                      <label class="control-label">Has a Stash Repository?</label>
-                      <label class="switcher switcher-success">
-                          <input type="checkbox" checked="">
-                          <div class="switcher-indicator">
-                              <div class="switcher-yes">YES</div>
-                              <div class="switcher-no">NO</div>
-                          </div>
-                          &nbsp;
-                      </label>
-                  </div>
-                  <fieldset class="form-group">
-                      <label>Link to the Stash Repository</label>
-                      <input class="form-control" type="text" />
-                  </fieldset>
+                            <div class="form-group">
+                                <label class="control-label">Has a JIRA Project?</label>
+                                <label class="switcher switcher-success">
+                                    <input type="checkbox" checked="" ng-model="formData.hasJiraProject">
+                                    <div class="switcher-indicator">
+                                        <div class="switcher-yes">YES</div>
+                                        <div class="switcher-no">NO</div>
+                                    </div>
+                                    &nbsp;
+                                </label>
+                            </div>
+                            <fieldset class="form-group">
+                                <label>Link to the JIRA Project</label>
+                                <input class="form-control" type="text" ng-model="formData.jiraLnk"/>
+                            </fieldset>
 
-              </form>
-          </div>
+                            <div class="form-group">
+                                <label class="control-label">Has a Stash Repository?</label>
+                                <label class="switcher switcher-success">
+                                    <input type="checkbox" checked="" ng-model="formData.hasRepository">
+                                    <div class="switcher-indicator">
+                                        <div class="switcher-yes">YES</div>
+                                        <div class="switcher-no">NO</div>
+                                    </div>
+                                    &nbsp;
+                                </label>
+                            </div>
+                            <fieldset class="form-group">
+                                <label>Link to the Stash Repository</label>
+                                <input class="form-control" type="text" ng-model="formData.repositoryLink" />
+                            </fieldset>
 
-          <div class="panel-footer text-right">
-              <button class="btn btn-primary" type="button">Create project</button>
-          </div>
+                    </div>
+
+                    <div class="panel-footer text-right">
+                        <button class="btn btn-primary" type="submit">Create project</button>
+                    </div>
+                </form>
+            </div>
       </div>
 
   </div>
