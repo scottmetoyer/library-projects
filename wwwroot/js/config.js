@@ -69,6 +69,17 @@
             return $ocLazyLoad.load([]);
           },
         },
+      })
+      .state('pages.view-project', {
+        url: '/view-project/:key',
+        templateUrl: 'views/view-project.html',
+        data: { pageTitle: 'Project dashboard' },
+        resolve: {
+          // Load plugins here
+          loadPlugin: function ($ocLazyLoad) {
+            return $ocLazyLoad.load([]);
+          },
+        },
       });
   };
 

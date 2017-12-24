@@ -4,12 +4,12 @@
   //
 
   function ProjectsCtrl($http) {
-    var scope = this;
-    this.projects = [];
+    var self = this;
+    self.projects = [];
 
     $http.get("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects")
     .then(function(response) {
-      scope.projects = response.data;
+      self.projects = response.data;
     });
   }
 
