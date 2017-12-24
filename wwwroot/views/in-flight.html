@@ -6,7 +6,7 @@
     <p>
       Projects that are in execution. Drag to change priority.
     </p>
-    <a href ui-sref="pages.create-project" class="btn btn-primary">Create a project</a>
+    <a href ui-sref="pages.create-project" class="btn btn-primary"><span class="btn-label-icon left ion-plus-round"></span>Create a project</a>
 </div>
 <hr class="page-wide-block m-t-0">
 <div class="row">
@@ -20,16 +20,14 @@
                   <th>Owner</th>
                   <th>Lead</th>
                   <th>Latest Status</th>
-                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <tr ng-repeat="p in projects.projects">
-                  <td>{{ p.key.S }}</td>
+                  <td><a href="#">{{ p.key.S }}</a></td>
                   <td>{{ p.name.S }}</td>
                   <td>{{ p.owner.S }}</td>
                   <td>{{ p.lead.S }}</td>
-                  <td></td>
                   <td></td>
                 </tr>
               </tbody>
