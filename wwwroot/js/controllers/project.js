@@ -9,9 +9,9 @@
     self.formData = {};
 
     self.createProject = function() {
-      $http.post("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects/")
+      $http.post("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects", JSON.stringify(self.formData))
       .then(function(response) {
-        self.project = response.data.Item;
+        console.log(response.data);
       });
     }
 
