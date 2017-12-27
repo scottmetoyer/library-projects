@@ -11,34 +11,40 @@
     <div class="col-md-12">
         <div class="panel">
             <div ng-controller="ProjectCtrl as project">
-                <form ng-submit="project.createProject()">
+                <form name="createForm" ng-submit="project.createProject(createForm.$valid)" novalidate>
                     <div class="panel-heading">
                         <div class="panel-title">Please enter the project details</div>
                     </div>
 
                     <div class="panel-body">
-
+                            <div class="alert alert-danger" ng-show="project.hasError == true">
+                                <strong>Something went wrong</strong> There was an error creating your project. Please check the AWS CloudWatch logs.
+                            </div>
                             <fieldset class="form-group">
                                 <label>Name</label>
-                                <input class="form-control" type="text" ng-model="formData.name">
+                                <input class="form-control" type="text" ng-model="project.formData.name" required>
+                            </fieldset>
+                            <fieldset class="form-group">
+                                <label>Project Key</label>
+                                <input class="form-control" type="text" ng-model="project.formData.key">
                             </fieldset>
                             <fieldset class="form-group">
                                 <label>Project purpose</label>
-                                <textarea class="form-control" placeholder="Why are we doing this project?" ng-model="formData.purpose"></textarea>
+                                <textarea class="form-control" placeholder="Why are we doing this project?" ng-model="project.formData.description"></textarea>
                             </fieldset>
                             <fieldset class="form-group">
                                 <label>Owner/Stakeholder</label>
-                                <input class="form-control" type="text" ng-model="formData.owner">
+                                <input class="form-control" type="text" ng-model="project.formData.owner">
                             </fieldset>
                             <fieldset class="form-group">
                                 <label>Cyberinfrastructure Lead</label>
-                                <input class="form-control" type="text" ng-model="formData.lead">
+                                <input class="form-control" type="text" ng-model="project.formData.lead">
                             </fieldset>
 
                             <fieldset class="form-group">
                                 <label class="control-label">Has a Project Plan?</label>
                                 <label class="switcher switcher-success">
-                                    <input type="checkbox" checked="" ng-model="formData.hasProjectPlan">
+                                    <input type="checkbox" checked="" ng-model="project.formData.hasProjectPlan">
                                     <div class="switcher-indicator">
                                         <div class="switcher-yes">YES</div>
                                         <div class="switcher-no">NO</div>
@@ -49,13 +55,13 @@
 
                             <fieldset class="form-group">
                                 <label>Link to the Project Plan</label>
-                                <input class="form-control" type="text" ng-model="formData.projectPlanLink" />
+                                <input class="form-control" type="text" ng-model="project.formData.projectPlanLink" />
                             </fieldset>
 
                             <fieldset class="form-group">
                                 <label class="control-label">Has a Confluence Wiki?</label>
                                 <label class="switcher switcher-success">
-                                    <input type="checkbox" checked="" ng-model="formData.hasWiki">
+                                    <input type="checkbox" checked="" ng-model="project.formData.hasWiki">
                                     <div class="switcher-indicator">
                                         <div class="switcher-yes">YES</div>
                                         <div class="switcher-no">NO</div>
@@ -66,13 +72,13 @@
 
                             <fieldset class="form-group">
                                 <label>Link to the Confluence Wiki</label>
-                                <input class="form-control" type="text" ng-model="formData.wikiLink" />
+                                <input class="form-control" type="text" ng-model="project.formData.wikiLink" />
                             </fieldset>
 
                             <div class="form-group">
                                 <label class="control-label">Has a JIRA Project?</label>
                                 <label class="switcher switcher-success">
-                                    <input type="checkbox" checked="" ng-model="formData.hasJiraProject">
+                                    <input type="checkbox" checked="" ng-model="project.formData.hasJiraProject">
                                     <div class="switcher-indicator">
                                         <div class="switcher-yes">YES</div>
                                         <div class="switcher-no">NO</div>
@@ -82,13 +88,13 @@
                             </div>
                             <fieldset class="form-group">
                                 <label>Link to the JIRA Project</label>
-                                <input class="form-control" type="text" ng-model="formData.jiraLnk"/>
+                                <input class="form-control" type="text" ng-model="project.formData.jiraLnk"/>
                             </fieldset>
 
                             <div class="form-group">
                                 <label class="control-label">Has a Stash Repository?</label>
                                 <label class="switcher switcher-success">
-                                    <input type="checkbox" checked="" ng-model="formData.hasCodeRepository">
+                                    <input type="checkbox" checked="" ng-model="project.formData.hasCodeRepository">
                                     <div class="switcher-indicator">
                                         <div class="switcher-yes">YES</div>
                                         <div class="switcher-no">NO</div>
@@ -98,13 +104,13 @@
                             </div>
                             <fieldset class="form-group">
                                 <label>Link to the Stash Repository</label>
-                                <input class="form-control" type="text" ng-model="formData.codeRepositoryLink" />
+                                <input class="form-control" type="text" ng-model="project.formData.codeRepositoryLink" />
                             </fieldset>
 
                     </div>
 
                     <div class="panel-footer text-right">
-                        <button class="btn btn-primary" type="submit">Create project</button>
+                        <button class="btn btn-primary" ng-disabled="createForm.$invalid" type="submit">Create project</button>
                     </div>
                 </form>
             </div>
