@@ -1,9 +1,163 @@
 <div ng-controller="ProjectCtrl as project">
 <div class="page-header">
+    <div class="alert alert-success" ng-show="project.showCreatedAlert == true">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>Project created!</strong> This is the project dashboard. Here you can view project details, team members, status, and links to external resources.
+    </div>
+    <div class="alert alert-success" ng-show="project.showUpdatedAlert == true">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>Project saved!</strong> The project has been updated.
+    </div>
     <div class="row">
-      <div class="col-md-4">
-          <h1><i class="page-header-icon ion-ios-pulse-strong"></i>{{ project.project.name.S }} <span class="text-muted font-weight-light">Dashboard</span></h1>
+      <div class="col-md-6">
+          <h1><i class="page-header-icon ion-ios-pulse-strong"></i>{{ project.project.name }} <span class="text-muted font-weight-light">Dashboard</span></h1>
       </div>
+      <div class="col-xs-12 width-md-auto width-lg-auto width-xl-auto pull-md-right">
+            <a href ui-sref="pages.edit-project({ key: project.project.key })" class="btn btn-block"><span class="btn-label-icon left ion-edit"></span>Edit project</a>
+        </div>
   </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel box">
+            <div class="box-row">
+                <div class="box-container">
+                    <div class="box-cell p-a-3 valign-middle bg-primary">
+                        <i class="box-bg-icon middle right font-size-52 ion-ios-information-outline"></i>
+                        <div class="font-size-17">Project Overview</div>
+                        <div class="text-muted font-size-12">Details and links to project resource adlsdkjnf skndasdklf lak flkaslkg alksg fn afg ad jsdfn knsd lfgsdfsdfkns</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box-row">
+                <div class="box-container text-xs-center">
+
+                    <div class="box-row valign-middle">
+                        <div class="box-cell p-y-1 b-r-1 b-b-1 b-t-1">
+                                <div class="font-size-15"><strong>&nbsp;{{ project.project.lead }}&nbsp;</strong></div>
+                                <div class="font-size-11">TECH LEAD</div>
+                            </div>
+
+                        <div class="box-cell p-y-1 b-r-1 b-b-1 b-t-1">
+                            <div class="font-size-15"><strong>&nbsp;{{ project.project.owner }}&nbsp;</strong></div>
+                            <div class="font-size-11">OWNER</div>
+                        </div>
+
+                        <div class="box-cell p-y-1 b-r-1 b-b-1 b-t-1">
+                            <div class="font-size-15"><strong>{{ project.project.key }}</strong></div>
+                            <div class="font-size-11">KEY</div>
+                        </div>
+
+                        <div class="box-cell p-y-1 b-b-1 b-t-1">
+                                <div class="font-size-17"><i class="ion-record text-warning"></i></div>
+                                <div class="font-size-11">STATUS</div>
+                        </div>
+                    </div>
+
+                    <div class="box-row valign-middle">
+                        <a class="box-cell p-y-1 b-r-1 b-b-1 b-t-1" href="http://www.google.com" target="_blank">
+                            <div class="font-size-17"><i class="ion-checkmark-circled text-success"></i></div>
+                            <div class="font-size-11">PROJECT PLAN</div>
+                        </a>
+
+                        <div class="box-cell p-y-1 b-r-1 b-b-1 b-t-1">
+                            <div class="font-size-17"><i class="ion-close text-danger"></i></div>
+                            <div class="font-size-11">WIKI</div>
+                        </div>
+
+                        <a class="box-cell p-y-1 b-r-1 b-b-1 b-t-1" href="#" target="_blank">
+                            <div class="font-size-17"><i class="ion-checkmark-circled text-success"></i></div>
+                            <div class="font-size-11">JIRA PROJECT</div>
+                        </a>
+
+                        <div class="box-cell p-y-1 b-b-1 b-t-1">
+                            <div class="font-size-17"><i class="ion-close text-danger"></i></div>
+                            <div class="font-size-11">CODE REPOSITORY</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">Status Updates</span>
+                <div class="panel-heading-controls">
+                    <button class="btn btn-xs btn-success btn-outline"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="widget-comments-item">
+                <div class="widget-comments-header">
+                <a href="#" title="">Denise Steiner</a> commented on <a href="#" title="">Article Name</a>
+                </div>
+                <div class="widget-comments-text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+                </div>
+                <div class="widget-comments-footer">
+                2 hours ago
+                <div class="pull-right">
+                        <a href="#"><i class="fa fa-pencil"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="widget-comments-item">
+                <div class="widget-comments-header">
+                <a href="#" title="">Michelle Bortz</a> commented on <a href="#" title="">Article Name</a>
+                </div>
+                <div class="widget-comments-text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+                </div>
+                <div class="widget-comments-footer">
+                2 hours ago
+                <div class="pull-right">
+                    <a href="#"><i class="fa fa-pencil"></i></a>
+                </div>
+                </div>
+            </div>
+
+            <div class="widget-comments-item">
+                <div class="widget-comments-header">
+                <a href="#" title="">Robert Jang</a> commented on <a href="#" title="">Article Name</a>
+                </div>
+                <div class="widget-comments-text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+                </div>
+                <div class="widget-comments-footer">
+                2 hours ago
+                <div class="pull-right">
+                        <a href="#"><i class="fa fa-pencil"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="widget-comments-item">
+                <div class="widget-comments-header">
+                <a href="#" title="">Timothy Owens</a> commented on <a href="#" title="">Article Name</a>
+                </div>
+                <div class="widget-comments-text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+                </div>
+                <div class="widget-comments-footer">
+                2 hours ago
+                <div class="pull-right">
+                        <a href="#"><i class="fa fa-pencil"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-footer text-xs-right">
+                 Showing 1-5 of 34 updates. <a href="">View all</a>.
+            </div>
+        </div>
+
+    </div>
+
 </div>
 </div>

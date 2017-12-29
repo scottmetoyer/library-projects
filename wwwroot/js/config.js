@@ -80,6 +80,28 @@
             return $ocLazyLoad.load([]);
           },
         },
+      })
+      .state('pages.archive', {
+        url: '/archive',
+        templateUrl: 'views/archive.html',
+        data: { pageTitle: 'Archived projects' },
+        resolve: {
+          // Load plugins here
+          loadPlugin: function ($ocLazyLoad) {
+            return $ocLazyLoad.load([]);
+          },
+        },
+      })
+      .state('pages.edit-project', {
+        url: '/edit-project/:key',
+        templateUrl: 'views/edit-project.html',
+        data: { pageTitle: 'Edit project' },
+        resolve: {
+          // Load plugins here
+          loadPlugin: function ($ocLazyLoad) {
+            return $ocLazyLoad.load([]);
+          },
+        },
       });
   };
 
