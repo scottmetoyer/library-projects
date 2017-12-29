@@ -44,7 +44,15 @@
         resolve: {
           // Load plugins here
           loadPlugin: function ($ocLazyLoad) {
-            return $ocLazyLoad.load([]);
+            return $ocLazyLoad.load([
+              {
+                serie: true,
+                name: 'ng-sortable',
+                files: [
+                  'js/libs/jquery-sortable.js'
+                ]
+              },
+            ]);
           },
         },
       })
@@ -55,7 +63,15 @@
         resolve: {
           // Load plugins here
           loadPlugin: function ($ocLazyLoad) {
-            return $ocLazyLoad.load([]);
+            return $ocLazyLoad.load([
+              {
+                serie: true,
+                name: 'ng-sortable',
+                files: [
+                  'js/libs/jquery-sortable.js'
+                ]
+              },
+            ]);
           },
         },
       })

@@ -49,7 +49,7 @@
                         </label>
                     </fieldset>
 
-                    <fieldset class="form-group">
+                    <fieldset class="form-group" ng-show="project.project.hasProjectPlan">
                         <label>Link to the Project Plan</label>
                         <input class="form-control" type="text" ng-model="project.project.projectPlanLink" />
                     </fieldset>
@@ -66,7 +66,7 @@
                         </label>
                     </fieldset>
 
-                    <fieldset class="form-group">
+                    <fieldset class="form-group" ng-show="project.project.hasWiki">
                         <label>Link to the Confluence Wiki</label>
                         <input class="form-control" type="text" ng-model="project.project.wikiLink" />
                     </fieldset>
@@ -82,7 +82,7 @@
                             &nbsp;
                         </label>
                     </div>
-                    <fieldset class="form-group">
+                    <fieldset class="form-group" ng-show="project.project.hasJiraProject">
                         <label>Link to the JIRA Project</label>
                         <input class="form-control" type="text" ng-model="project.project.jiraLnk"/>
                     </fieldset>
@@ -98,13 +98,38 @@
                             &nbsp;
                         </label>
                     </div>
-                    <fieldset class="form-group">
+                    <fieldset class="form-group" ng-show="project.project.hasCodeRepository">
                         <label>Link to the Stash Repository</label>
                         <input class="form-control" type="text" ng-model="project.project.codeRepositoryLink" />
                     </fieldset>
+
+                    <div class="form-group">
+                        <label class="control-label">Execution Status</label>
+                        <div class="radio m-t-0">
+                            <label>
+                                <input type="radio" name="execution-status" ng-model="project.project.executionStatus" value="backlog"> Backlog
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="execution-status" ng-model="project.project.executionStatus" value="on-deck"> On-deck
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="execution-status" ng-model="project.project.executionStatus" value="in-flight"> In-flight
+                            </label>
+                        </div>
+                        <div class="radio m-b-0">
+                            <label>
+                                <input type="radio" name="execution-status" ng-model="project.project.executionStatus" value="archive"> Archive
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="panel-footer text-right">
+                    <a class="btn btn-danger" type="button" href ui-sref="pages.view-project({ key: project.project.key })">Cancel</a>
                     <button class="btn btn-primary" ng-disabled="updateForm.$invalid" type="submit">Save project</button>
                 </div>
             </form>

@@ -8,11 +8,15 @@
         <button type="button" class="close" data-dismiss="alert">×</button>
         <strong>Project saved!</strong> The project has been updated.
     </div>
+    <div class="alert alert-danger" ng-show="project.hasError == true">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>Something went wrong</strong> There was an error loading the project. Please check the AWS CloudWatch logs.
+    </div>
     <div class="row">
       <div class="col-md-6">
           <h1><i class="page-header-icon ion-ios-pulse-strong"></i>{{ project.project.name }} <span class="text-muted font-weight-light">Dashboard</span></h1>
       </div>
-      <div class="col-xs-12 width-md-auto width-lg-auto width-xl-auto pull-md-right">
+        <div class="col-xs-12 width-md-auto width-lg-auto width-xl-auto pull-md-right">
             <a href ui-sref="pages.edit-project({ key: project.project.key })" class="btn btn-block"><span class="btn-label-icon left ion-edit"></span>Edit project</a>
         </div>
   </div>
@@ -26,7 +30,7 @@
                     <div class="box-cell p-a-3 valign-middle bg-primary">
                         <i class="box-bg-icon middle right font-size-52 ion-ios-information-outline"></i>
                         <div class="font-size-17">Project Overview</div>
-                        <div class="text-muted font-size-12">Details and links to project resource adlsdkjnf skndasdklf lak flkaslkg alksg fn afg ad jsdfn knsd lfgsdfsdfkns</div>
+                        <div class="text-muted font-size-12">{{ project.project.description }}</div>
                     </div>
                 </div>
             </div>
@@ -36,9 +40,9 @@
 
                     <div class="box-row valign-middle">
                         <div class="box-cell p-y-1 b-r-1 b-b-1 b-t-1">
-                                <div class="font-size-15"><strong>&nbsp;{{ project.project.lead }}&nbsp;</strong></div>
-                                <div class="font-size-11">TECH LEAD</div>
-                            </div>
+                            <div class="font-size-15"><strong>&nbsp;{{ project.project.lead }}&nbsp;</strong></div>
+                            <div class="font-size-11">TECH LEAD</div>
+                        </div>
 
                         <div class="box-cell p-y-1 b-r-1 b-b-1 b-t-1">
                             <div class="font-size-15"><strong>&nbsp;{{ project.project.owner }}&nbsp;</strong></div>
@@ -57,22 +61,38 @@
                     </div>
 
                     <div class="box-row valign-middle">
-                        <a class="box-cell p-y-1 b-r-1 b-b-1 b-t-1" href="http://www.google.com" target="_blank">
+                        <a ng-if="project.project.hasProjectPlan" class="box-cell p-y-1 b-r-1 b-b-1 b-t-1" href="{{ project.project.projectPlanLink }}" target="_blank">
                             <div class="font-size-17"><i class="ion-checkmark-circled text-success"></i></div>
                             <div class="font-size-11">PROJECT PLAN</div>
                         </a>
+                        <div ng-if="!project.project.hasProjectPlan" class="box-cell p-y-1 b-r-1 b-b-1 b-t-1">
+                            <div class="font-size-17"><i class="ion-close text-danger"></i></div>
+                            <div class="font-size-11">PROJECT PLAN</div>
+                        </div>
 
-                        <div class="box-cell p-y-1 b-r-1 b-b-1 b-t-1">
+                        <a ng-if="project.project.hasWiki" class="box-cell p-y-1 b-r-1 b-b-1 b-t-1" href="{{ project.project.wikiLink }}" target="_blank">
+                            <div class="font-size-17"><i class="ion-checkmark-circled text-success"></i></div>
+                            <div class="font-size-11">WIKI</div>
+                        </a>
+                        <div ng-if="!project.project.hasWiki" class="box-cell p-y-1 b-r-1 b-b-1 b-t-1">
                             <div class="font-size-17"><i class="ion-close text-danger"></i></div>
                             <div class="font-size-11">WIKI</div>
                         </div>
 
-                        <a class="box-cell p-y-1 b-r-1 b-b-1 b-t-1" href="#" target="_blank">
+                        <a ng-if="project.project.hasJiraProject" class="box-cell p-y-1 b-r-1 b-b-1 b-t-1" href="{{ project.project.jiraProjectLink }}" target="_blank">
                             <div class="font-size-17"><i class="ion-checkmark-circled text-success"></i></div>
                             <div class="font-size-11">JIRA PROJECT</div>
                         </a>
+                        <div ng-if="!project.project.hasJiraProject" class="box-cell p-y-1 b-r-1 b-b-1 b-t-1">
+                            <div class="font-size-17"><i class="ion-close text-danger"></i></div>
+                            <div class="font-size-11">JIRA PROJECT</div>
+                        </div>
 
-                        <div class="box-cell p-y-1 b-b-1 b-t-1">
+                        <a ng-if="project.project.hasCodeRepository" class="box-cell p-y-1 b-r-1 b-b-1 b-t-1" href="{{ project.project.codeRepositoryLink }}" target="_blank">
+                            <div class="font-size-17"><i class="ion-checkmark-circled text-success"></i></div>
+                            <div class="font-size-11">CODE REPOSITORY</div>
+                        </a>
+                        <div ng-if="!project.project.hasCodeRepository" class="box-cell p-y-1 b-r-1 b-b-1 b-t-1">
                             <div class="font-size-17"><i class="ion-close text-danger"></i></div>
                             <div class="font-size-11">CODE REPOSITORY</div>
                         </div>
@@ -80,7 +100,13 @@
 
                 </div>
             </div>
+
+            <div class="panel-footer pull-right">
+                <span class="font-size-11 text-muted">EXECUTION STATUS</span>&nbsp;
+                <span class="font-size-11 text-uppercase"><strong>{{ project.project.executionStatus}}</strong></span>
+            </div>
         </div>
+
     </div>
 
     <div class="col-md-6">

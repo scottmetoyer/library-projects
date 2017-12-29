@@ -1,18 +1,25 @@
-<div ng-controller="ProjectsCtrl as projects">
+<div ng-controller="ProjectListCtrl as projects">
 <div class="page-header m-b-0">
-  <h1><span class="text-muted font-weight-light">Projects / </span>In-flight</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <h1><span class="text-muted font-weight-light">Projects / </span>In-flight</h1>
+    </div>
+    <div class="col-xs-12 width-md-auto width-lg-auto width-xl-auto pull-md-right">
+        <a href ui-sref="pages.create-project" class="btn btn-primary"><span class="btn-label-icon left ion-plus-round"></span>Create a project</a>
+      </div>
+  </div>
 </div>
 <div class="page-wide-block p-a-4 bg-white font-size-15">
     <p>
       Projects that are in execution. Drag to change priority.
     </p>
-    <a href ui-sref="pages.create-project" class="btn btn-primary"><span class="btn-label-icon left ion-plus-round"></span>Create a project</a>
 </div>
 <hr class="page-wide-block m-t-0">
 <div class="row">
   <div class="col-md-12">
+      <p ng-show="projects.projects.length == 0">There are no projects in-flight. Kick some off from <a href ui-sref="pages.on-deck">on-deck</a>.</p>
       <div class="table-light">
-          <table class="table table-bordered table-striped" id="projects">
+          <table class="table table-bordered table-striped" id="projects" ng-show="projects.projects.length > 0">
               <thead>
                 <tr>
                   <th>Key</th>
