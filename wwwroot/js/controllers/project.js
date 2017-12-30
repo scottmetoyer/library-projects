@@ -9,6 +9,11 @@
     // Initialize the empty project container with sensible defaults
     self.project = {};
     self.project.executionStatus = 'backlog';
+    self.showStatusUpdateForm = false;
+
+    self.toggleStatusUpdateForm = function() {
+      self.showStatusUpdateForm = !self.showStatusUpdateForm;
+    }
 
     self.createProject = function(isValid) {
       if (isValid) {

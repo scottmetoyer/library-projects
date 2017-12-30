@@ -114,8 +114,17 @@
             <div class="panel-heading">
                 <span class="panel-title">Status Updates</span>
                 <div class="panel-heading-controls">
-                    <button class="btn btn-xs btn-success btn-outline"><i class="fa fa-plus"></i></button>
+                    <button class="btn btn-xs btn-success btn-outline" ng-click="project.toggleStatusUpdateForm()"><i class="fa fa-plus"></i></button>
                 </div>
+            </div>
+
+            <div class="widget-comments-item" ng-show="project.showStatusUpdateForm">
+                <form action="">
+                <img src="assets/demo/avatars/1.jpg" alt="" class="widget-tree-comments-avatar">
+                    <textarea rows="3" class="form-control widget-tree-comments-input" placeholder="Write your comment..."></textarea>
+                    <button type="submit" class="btn btn-primary btn-sm">Post</button>&nbsp;
+                    <button type="button" class="btn btn-sm">Cancel</button>
+                </form>
             </div>
 
             <div class="widget-comments-item">
