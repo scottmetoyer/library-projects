@@ -14,26 +14,28 @@
       if (isValid) {
         self.project.key = self.project.key.toUpperCase();
 
-        $http.post("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects", JSON.stringify(self.project))
-        .then(function(response) {
+        saveProject(function(){
           $location.path('/pages/view-project/' + self.project.key).search({ new: 'true' });
-        }, function(response){
-          $anchorScroll();
-          self.hasError = true;
         });
       }
     }
 
     self.updateProject = function(isValid) {
       if (isValid) {
-        $http.post("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects", JSON.stringify(self.project))
-        .then(function(response) {
+        saveProject(function(){
           $location.path('/pages/view-project/' + self.project.key).search({ updated: 'true' });
-        }, function(response){
-          $anchorScroll();
-          self.hasError = true;
         });
       }
+    }
+
+    function saveProject(callback){
+      $http.post("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects", JSON.stringify(self.project))
+      .then(function(response) {
+        callback();
+      }, function(response){
+        $anchorScroll();
+        self.hasError = true;
+      });
     }
 
     // Load up a project if we have passed a key in the state parameters

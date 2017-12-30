@@ -36,8 +36,8 @@
                   <td>{{ p.lead }}</td>
                   <td>{{ p.owner }}</td>
                   <td style="width: 300px;">
-                    <button class="btn btn-success btn-xs">Move to in-flight</button>
-                    <button class="btn btn-warning btn-xs">Move to backlog</button>
+                    <button class="btn btn-success btn-xs" ng-click="projects.moveToInFlight(p.key)">Move to in-flight</button>
+                    <button class="btn btn-warning btn-xs" ng-click="projects.moveToBacklog(p.key)">Move to backlog</button>
                   </td>
                 </tr>
               </tbody>
