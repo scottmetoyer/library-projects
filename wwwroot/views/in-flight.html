@@ -24,18 +24,20 @@
                 <tr>
                   <th>Key</th>
                   <th>Name</th>
+                  <th style="width: 12%">Status</th>
                   <th>Lead</th>
                   <th>Owner</th>
-                  <th>Latest Update</th>
+                  <th style="width: 35%">Latest Update</th>
                 </tr>
               </thead>
               <tbody>
                 <tr ng-repeat="p in projects.projects">
                   <td><a href ui-sref="pages.view-project({ key: p.key })">{{ p.key }}</a></td>
                   <td>{{ p.name }}</td>
+                  <td><i class="ion-record {{ p.status.class }}"></i>&nbsp;{{ p.status.description }}</td>
                   <td>{{ p.lead }}</td>
                   <td>{{ p.owner }}</td>
-                  <td></td>
+                  <td>{{ p.latestUpdate }}</td>
                 </tr>
               </tbody>
           </table>

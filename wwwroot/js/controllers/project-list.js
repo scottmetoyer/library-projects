@@ -3,7 +3,7 @@
   // Controllers / ProjectList
   //
 
-  function ProjectListCtrl($http, $state, $filter) {
+  function ProjectListCtrl($http, $state, $filter, bl) {
     var self = this;
     self.projects = [];
 
@@ -55,6 +55,23 @@
           self.projects = response.data.filter(function(project) {
             return (project.executionStatus == 'in-flight');
           });
+
+          self.projects.forEach(function(project) {
+            project.status = bl.calculateStatus(project);
+
+            $http.get("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/project-updates/" + project.key)
+            .then(function(res) {
+              var list = res.data.Items;
+
+              if (list.length > 0) {
+                list = $filter('orderBy')(list, "created", true);
+                project.latestUpdate = list[0].text;
+              }
+            }, function(response){
+              // Error loading status updates for this project
+              console.log(err);
+            });
+          })
         }
       });
     }

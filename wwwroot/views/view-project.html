@@ -56,8 +56,8 @@
                         </div>
 
                         <div class="box-cell p-y-1 b-b-1 b-t-1">
-                                <div class="font-size-17"><i class="ion-record text-warning"></i></div>
-                                <div class="font-size-11">STATUS</div>
+                            <div class="font-size-17"><i class="ion-record {{ project.project.status.class }}"></i></div>
+                            <div class="font-size-11">STATUS</div>
                         </div>
                     </div>
 
@@ -124,6 +124,7 @@
                     <select class="form-control" ng-model="project.statusUpdate.user">
                         <option>Barry</option>
                         <option>Dan</option>
+                        <option>Dennis</option>
                         <option>Joe</option>
                         <option>Scott</option>
                         <option>Sean</option>

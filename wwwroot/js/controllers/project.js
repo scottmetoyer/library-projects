@@ -3,7 +3,7 @@
   // Controllers / Project
   //
 
-  function ProjectCtrl($http, $stateParams, $anchorScroll, $location) {
+  function ProjectCtrl($http, $stateParams, $anchorScroll, $location, bl) {
     var self = this;
 
     // Initialize with sensible defaults
@@ -83,6 +83,8 @@
         self.project = response.data.Item;
 
         if (self.project != null) {
+          self.project.status = bl.calculateStatus(self.project);
+
           // Toggle visibility on the new and updated project indicators
           if ('new' in $location.search()) {
             self.showCreatedAlert = true;
