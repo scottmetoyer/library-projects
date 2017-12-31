@@ -10,7 +10,7 @@
     </div>
     <div class="alert alert-danger" ng-show="project.hasError == true">
         <button type="button" class="close" data-dismiss="alert">×</button>
-        <strong>Something went wrong</strong> There was an error loading the project. Please check the AWS CloudWatch logs.
+        <strong>Something went wrong</strong> There was an error. Please check the AWS CloudWatch logs.
     </div>
     <div class="row">
       <div class="col-md-6">
@@ -119,8 +119,8 @@
             </div>
 
             <div class="widget-comments-item" ng-show="project.showStatusUpdateForm">
-                <form name="statusUpdateForm" ng-submit="project.saveStatusUpdate(statusUpdateForm.$valid)" novalidate>
-                    <select class="form-control" required>
+                <form name="statusUpdateForm" ng-submit="project.saveStatusUpdate(statusUpdateForm.$valid)" ng-model="project.statusUpdate.user"novalidate>
+                    <select class="form-control">
                         <option>Team member</option>
                         <option>Barry</option>
                         <option>Dan</option>
@@ -129,7 +129,7 @@
                         <option>Sean</option>
                         <option>Ramon</option>
                     </select>
-                    <textarea rows="3" class="form-control widget-tree-comments-input" placeholder="Update project status..." required></textarea>
+                    <textarea rows="3" class="form-control widget-tree-comments-input" placeholder="Update project status..." required ng-model="project.statusUpdate.text"></textarea>
                     <button type="submit" class="btn btn-primary btn-sm" ng-disabled="statusUpdateForm.$invalid">Post</button>&nbsp;
                     <button type="button" class="btn btn-sm" ng-click="project.cancelStatusUpdate()">Cancel</button>
                 </form>

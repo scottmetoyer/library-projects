@@ -8,18 +8,24 @@
 
     // Initialize the empty project container with sensible defaults
     self.project = {};
+    self.statusUpdateList = {};
     self.statusUpdate = {};
     self.project.executionStatus = 'backlog';
     self.showStatusUpdateForm = false;
 
     self.saveStatusUpdate = function(isValid) {
       if (isValid) {
-        console.log('saved');
+        $http.post("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/project-updates", JSON.stringify(self.statusUpdate))
+        .then(function(response) {
+          getStatusUpdates($stateParams.key);
+        }, function(response){
+          self.hasError = true;
+        });
       }
     }
 
     self.cancelStatusUpdate = function() {
-      self.showCreatedAlert = false;
+      self.showStatusUpdateForm = false;
       self.statusUpdate = {};
     }
 
@@ -55,6 +61,17 @@
       });
     }
 
+    function getStatusUpdates(key) {
+      $http.get("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects/" + $stateParams.key)
+      .then(function(response) {
+        self.statusUpdateList = response.data;
+        console.log(response.data);
+      }, function(response){
+        $anchorScroll();
+        self.hasError = true;
+      });
+    }
+
     // Load up a project if we have passed a key in the state parameters
     if ($stateParams.key) {
       $http.get("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects/" + $stateParams.key)
@@ -73,6 +90,9 @@
         } else {
           self.hasError = true;
         }
+
+        // Load up the project status updates
+        getStatusUpdates($stateParams.key);
       }, function(response){
         $anchorScroll();
         self.hasError = true;
