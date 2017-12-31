@@ -8,8 +8,20 @@
 
     // Initialize the empty project container with sensible defaults
     self.project = {};
+    self.statusUpdate = {};
     self.project.executionStatus = 'backlog';
     self.showStatusUpdateForm = false;
+
+    self.saveStatusUpdate = function(isValid) {
+      if (isValid) {
+        console.log('saved');
+      }
+    }
+
+    self.cancelStatusUpdate = function() {
+      self.showCreatedAlert = false;
+      self.statusUpdate = {};
+    }
 
     self.toggleStatusUpdateForm = function() {
       self.showStatusUpdateForm = !self.showStatusUpdateForm;
