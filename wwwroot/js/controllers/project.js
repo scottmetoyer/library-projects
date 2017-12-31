@@ -6,15 +6,17 @@
   function ProjectCtrl($http, $stateParams, $anchorScroll, $location) {
     var self = this;
 
-    // Initialize the empty project container with sensible defaults
+    // Initialize with sensible defaults
     self.project = {};
     self.statusUpdateList = {};
-    self.statusUpdate = {};
+    self.statusUpdate = { 'user': 'Choose a team member...' };
     self.project.executionStatus = 'backlog';
     self.showStatusUpdateForm = false;
 
     self.saveStatusUpdate = function(isValid) {
       if (isValid) {
+        self.statusUpdate.key = $stateParams.key;
+
         $http.post("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/project-updates", JSON.stringify(self.statusUpdate))
         .then(function(response) {
           getStatusUpdates($stateParams.key);
@@ -26,7 +28,7 @@
 
     self.cancelStatusUpdate = function() {
       self.showStatusUpdateForm = false;
-      self.statusUpdate = {};
+      self.statusUpdate = { 'user': 'Choose a team member...' };
     }
 
     self.toggleStatusUpdateForm = function() {
@@ -62,10 +64,12 @@
     }
 
     function getStatusUpdates(key) {
-      $http.get("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects/" + $stateParams.key)
+      $http.get("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/project-updates/" + key)
       .then(function(response) {
         self.statusUpdateList = response.data;
-        console.log(response.data);
+
+        // Close the update form if it is open
+        self.cancelStatusUpdate();
       }, function(response){
         $anchorScroll();
         self.hasError = true;

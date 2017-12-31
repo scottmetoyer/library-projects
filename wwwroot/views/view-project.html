@@ -1,17 +1,18 @@
 <div ng-controller="ProjectCtrl as project">
-<div class="page-header">
-    <div class="alert alert-success" ng-show="project.showCreatedAlert == true">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <strong>Project created!</strong> This is the project dashboard. Here you can view project details, team members, status, and links to external resources.
-    </div>
-    <div class="alert alert-success" ng-show="project.showUpdatedAlert == true">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <strong>Project saved!</strong> The project has been updated.
-    </div>
-    <div class="alert alert-danger" ng-show="project.hasError == true">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <strong>Something went wrong</strong> There was an error. Please check the AWS CloudWatch logs.
-    </div>
+<div class="alert alert-success" ng-show="project.showCreatedAlert == true">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>Project created!</strong> This is the project dashboard. Here you can view project details, team members, status, and links to external resources.
+</div>
+<div class="alert alert-success" ng-show="project.showUpdatedAlert == true">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>Project saved!</strong> The project has been updated.
+</div>
+<div class="alert alert-danger" ng-show="project.hasError == true">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>Something went wrong</strong> There was an error. Please check the AWS CloudWatch logs.
+</div>
+
+<div class="page-header" ng-hide="project.hasError">
     <div class="row">
       <div class="col-md-6">
           <h1><i class="page-header-icon ion-ios-pulse-strong"></i>{{ project.project.name }} <span class="text-muted font-weight-light">Dashboard</span></h1>
@@ -22,7 +23,7 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" ng-hide="project.hasError">
     <div class="col-md-6">
         <div class="panel box">
             <div class="box-row">
@@ -119,9 +120,8 @@
             </div>
 
             <div class="widget-comments-item" ng-show="project.showStatusUpdateForm">
-                <form name="statusUpdateForm" ng-submit="project.saveStatusUpdate(statusUpdateForm.$valid)" ng-model="project.statusUpdate.user"novalidate>
-                    <select class="form-control">
-                        <option>Team member</option>
+                <form name="statusUpdateForm" ng-submit="project.saveStatusUpdate(statusUpdateForm.$valid)" novalidate>
+                    <select class="form-control" ng-model="project.statusUpdate.user">
                         <option>Barry</option>
                         <option>Dan</option>
                         <option>Joe</option>
@@ -135,68 +135,23 @@
                 </form>
             </div>
 
-            <div class="widget-comments-item">
+            <div class="widget-comments-item" ng-repeat="comment in project.statusUpdateList.Items | orderBy: '-created'">
                 <div class="widget-comments-header">
-                <a href="#" title="">Denise Steiner</a> commented on <a href="#" title="">Article Name</a>
+                <a href="#" title="">{{ comment.user }}</a> commented on <a href="#" title="">{{ project.project.name }}</a>
                 </div>
                 <div class="widget-comments-text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+                {{ comment.text }}
                 </div>
                 <div class="widget-comments-footer">
-                2 hours ago
-                <div class="pull-right">
-                        <a href="#"><i class="fa fa-pencil"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="widget-comments-item">
-                <div class="widget-comments-header">
-                <a href="#" title="">Michelle Bortz</a> commented on <a href="#" title="">Article Name</a>
-                </div>
-                <div class="widget-comments-text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                </div>
-                <div class="widget-comments-footer">
-                2 hours ago
-                <div class="pull-right">
-                    <a href="#"><i class="fa fa-pencil"></i></a>
-                </div>
-                </div>
-            </div>
-
-            <div class="widget-comments-item">
-                <div class="widget-comments-header">
-                <a href="#" title="">Robert Jang</a> commented on <a href="#" title="">Article Name</a>
-                </div>
-                <div class="widget-comments-text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                </div>
-                <div class="widget-comments-footer">
-                2 hours ago
-                <div class="pull-right">
-                        <a href="#"><i class="fa fa-pencil"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="widget-comments-item">
-                <div class="widget-comments-header">
-                <a href="#" title="">Timothy Owens</a> commented on <a href="#" title="">Article Name</a>
-                </div>
-                <div class="widget-comments-text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                </div>
-                <div class="widget-comments-footer">
-                2 hours ago
-                <div class="pull-right">
-                        <a href="#"><i class="fa fa-pencil"></i></a>
+                {{ comment.created | humandate }}
+                    <div class="pull-right">
+                            <a href="#"><i class="fa fa-pencil"></i></a>
                     </div>
                 </div>
             </div>
 
             <div class="panel-footer text-xs-right">
-                 Showing 1-5 of 34 updates. <a href="">View all</a>.
+                 Showing {{ project.statusUpdateList.Count }} of {{ project.statusUpdateList.Count }} updates. <a href="">View all</a>.
             </div>
         </div>
 
