@@ -65,7 +65,7 @@
 
               if (list.length > 0) {
                 list = $filter('orderBy')(list, "created", true);
-                project.latestUpdate = list[0].text;
+                project.latestUpdate = list[0];
               }
             }, function(response){
               // Error loading status updates for this project

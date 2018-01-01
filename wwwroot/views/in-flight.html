@@ -37,7 +37,20 @@
                   <td><i class="ion-record {{ p.status.class }}"></i>&nbsp;{{ p.status.description }}</td>
                   <td>{{ p.lead }}</td>
                   <td>{{ p.owner }}</td>
-                  <td>{{ p.latestUpdate }}</td>
+                  <td>
+                      <div class="widget-comments-item" ng-show="p.latestUpdate != null">
+                          <div class="widget-comments-header">
+                            <a href="#" title="">{{ p.latestUpdate.user }}</a> commented:
+                          </div>
+                          <div class="widget-comments-text">
+                          {{ p.latestUpdate.text }}
+                          </div>
+                          <div class="widget-comments-footer">
+                          {{ p.latestUpdate.created | humandate }}
+                          </div>
+                      </div>
+
+                  </td>
                 </tr>
               </tbody>
           </table>
