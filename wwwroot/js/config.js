@@ -118,6 +118,17 @@
             return $ocLazyLoad.load([]);
           },
         },
+      })
+      .state('pages.recurring-tasks', {
+        url: '/recurring-tasks',
+        templateUrl: 'views/recurring-tasks.html',
+        data: { pageTitle: 'Recurring tasks' },
+        resolve: {
+          // Load plugins here
+          loadPlugin: function ($ocLazyLoad) {
+            return $ocLazyLoad.load([]);
+          },
+        },
       });
   };
 
