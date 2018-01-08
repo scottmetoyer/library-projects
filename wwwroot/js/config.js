@@ -129,6 +129,17 @@
             return $ocLazyLoad.load([]);
           },
         },
+      })
+      .state('pages.create-task', {
+        url: '/create-task',
+        templateUrl: 'views/create-recurring-task.html',
+        data: { pageTitle: 'Create a recurring task' },
+        resolve: {
+          // Load plugins here
+          loadPlugin: function ($ocLazyLoad) {
+            return $ocLazyLoad.load([]);
+          },
+        },
       });
   };
 
