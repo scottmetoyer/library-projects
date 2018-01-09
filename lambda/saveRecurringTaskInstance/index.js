@@ -4,7 +4,7 @@ var uuidv1 = require('uuid/v1');
 var docClient = new AWS.DynamoDB.DocumentClient();
 
 exports.handler = function(event, context, callback) {
-    var tableName = "RecurringTasks";
+    var tableName = "RecurringTaskInstances";
     var datetime = new Date().getTime().toString();
     var item = {};
     var params = JSON.parse(event.body);

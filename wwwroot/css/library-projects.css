@@ -16,3 +16,7 @@ tr.placeholder {
 .widget-timeline-icon {
   cursor: pointer;
 }
+
+.text-strike{
+  text-decoration: line-through;
+}

@@ -5,9 +5,11 @@
 
   function RecurringTasksCtrl($http, $scope, $state, $filter, $anchorScroll, $location, bl) {
     var self = this;
-    self.months = [];
     self.month = new Date().getMonth() + 1;
+    self.year = new Date().getFullYear();
+    self.months = [];
     self.tasks = [];
+    self.instances = [];
 
     // Custom filter for showing tasks of a certain month
     // TODO: Figure out how to get this moved into filter.js
@@ -25,10 +27,16 @@
         self.months.push(month);
       }
 
-      // Fetch the task list
+      // Fetch all the tasks
       $http.get("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/tasks")
       .then(function(response) {
         self.tasks = response.data;
+      });
+
+      // Fetch the task instance data
+      $http.get("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/tasks/instances/" +  self.year)
+      .then(function(response) {
+        self.instances = response.data;
       });
     }
 
