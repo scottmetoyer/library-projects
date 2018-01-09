@@ -140,6 +140,17 @@
             return $ocLazyLoad.load([]);
           },
         },
+      })
+      .state('pages.edit-task', {
+        url: '/edit-task/:id',
+        templateUrl: 'views/edit-recurring-task.html',
+        data: { pageTitle: 'Edit task' },
+        resolve: {
+          // Load plugins here
+          loadPlugin: function ($ocLazyLoad) {
+            return $ocLazyLoad.load([]);
+          },
+        },
       });
   };
 

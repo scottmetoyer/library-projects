@@ -51,7 +51,7 @@
     }
 
     // Load up a task if we have passed an in the state parameters
-    if ($stateParams.key) {
+    if ($stateParams.id) {
       $http.get("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/tasks/" + $stateParams.id)
       .then(function(response) {
         self.task = response.data.Item;
