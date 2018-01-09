@@ -10,7 +10,7 @@
     self.moveToInFlight = function(key) {
       var postData = { key: key, executionStatus: 'in-flight'};
 
-      $http.post("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects/" + key + "/execution-status", JSON.stringify(postData))
+      $http.post("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects/" + key + "/execution-status",  angular.toJson(postData))
       .then(function(response) {
         loadProjects();
       });
@@ -19,7 +19,7 @@
     self.moveToOnDeck = function(key) {
       var postData = { key: key, executionStatus: 'on-deck'};
 
-      $http.post("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects/" + key + "/execution-status", JSON.stringify(postData))
+      $http.post("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects/" + key + "/execution-status",  angular.toJson(postData))
       .then(function(response) {
         loadProjects();
       });
@@ -28,7 +28,7 @@
     self.moveToBacklog = function(key) {
       var postData = { key: key, executionStatus: 'backlog'};
 
-      $http.post("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects/" + key + "/execution-status", JSON.stringify(postData))
+      $http.post("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects/" + key + "/execution-status", angular.toJson(postData))
       .then(function(response) {
         loadProjects();
       });
