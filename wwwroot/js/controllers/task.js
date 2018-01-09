@@ -15,7 +15,7 @@
         { name: "Apr", selected: false },
         { name: "May", selected: false },
         { name: "Jun", selected: false },
-        { name: "Jul", selected: true },
+        { name: "Jul", selected: false },
         { name: "Aug", selected: false },
         { name: "Sep", selected: false },
         { name: "Oct", selected: false },
