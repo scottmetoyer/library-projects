@@ -9,7 +9,7 @@
         function listener(event, toState, toParams, fromState, fromParams) {
           var title =
             (toState.data && toState.data.pageTitle ? (toState.data.pageTitle + ' - ') : '') +
-            'Angular Starter Project';
+            'UCR Library Project Atlas';
 
           $element.text(title);
         }

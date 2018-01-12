@@ -3,39 +3,33 @@
   // Controllers / ProjectList
   //
 
-  function ProjectListCtrl($http, $state, $filter, bl) {
+  function ProjectListCtrl($http, $state, $filter, bl, data, jira) {
     var self = this;
     self.projects = [];
 
     self.moveToInFlight = function(key) {
-      var postData = { key: key, executionStatus: 'in-flight'};
-
-      $http.post("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects/" + key + "/execution-status",  angular.toJson(postData))
+      data.saveProjectStatus('in-flight', key)
       .then(function(response) {
         loadProjects();
       });
     }
 
     self.moveToOnDeck = function(key) {
-      var postData = { key: key, executionStatus: 'on-deck'};
-
-      $http.post("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects/" + key + "/execution-status",  angular.toJson(postData))
+      data.saveProjectStatus('on-deck', key)
       .then(function(response) {
         loadProjects();
       });
     }
 
     self.moveToBacklog = function(key) {
-      var postData = { key: key, executionStatus: 'backlog'};
-
-      $http.post("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects/" + key + "/execution-status", angular.toJson(postData))
+      data.saveProjectStatus('backlog', key)
       .then(function(response) {
         loadProjects();
       });
     }
 
     function loadProjects() {
-      $http.get("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects")
+      data.getProjects()
       .then(function(response) {
 
         // Filter the list based on route
@@ -59,7 +53,7 @@
           self.projects.forEach(function(project) {
             project.status = bl.calculateStatus(project);
 
-            $http.get("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/project-updates/" + project.key)
+            data.getStatusUpdates(project.key)
             .then(function(res) {
               var list = res.data.Items;
 
