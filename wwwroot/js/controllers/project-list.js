@@ -31,22 +31,23 @@
     function loadProjects() {
       data.getProjects()
       .then(function(response) {
+        var items = response.data.Items;
 
         // Filter the list based on route
         if ($state.current.name == 'pages.backlog') {
-          self.projects = response.data.filter(function(project) {
+          self.projects = items.filter(function(project) {
             return (project.executionStatus == 'backlog');
           });
         } else if ($state.current.name == 'pages.on-deck') {
-          self.projects = response.data.filter(function(project) {
+          self.projects = items.filter(function(project) {
             return (project.executionStatus == 'on-deck');
           });
         } else if ($state.current.name == 'pages.archive') {
-          self.projects = response.data.filter(function(project) {
+          self.projects = items.filter(function(project) {
             return (project.executionStatus == 'archive');
           });
         } else {
-          self.projects = response.data.filter(function(project) {
+          self.projects = items.filter(function(project) {
             return (project.executionStatus == 'in-flight');
           });
 

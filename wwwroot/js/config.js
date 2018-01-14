@@ -120,7 +120,7 @@
         },
       })
       .state('pages.recurring-tasks', {
-        url: '/recurring-tasks',
+        url: 'recurring-tasks',
         templateUrl: 'views/recurring-tasks.html',
         data: { pageTitle: 'Recurring tasks' },
         resolve: {
@@ -131,7 +131,7 @@
         },
       })
       .state('pages.create-task', {
-        url: '/create-task',
+        url: 'create-task',
         templateUrl: 'views/create-recurring-task.html',
         data: { pageTitle: 'Create a recurring task' },
         resolve: {
