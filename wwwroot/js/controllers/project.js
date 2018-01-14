@@ -3,7 +3,7 @@
   // Controllers / Project
   //
 
-  function ProjectCtrl($http, $stateParams, $anchorScroll, $location, bl) {
+  function ProjectCtrl($http, $stateParams, $anchorScroll, $location, bl, data) {
     var self = this;
 
     // Initialize with sensible defaults
@@ -17,7 +17,7 @@
       if (isValid) {
         self.statusUpdate.key = $stateParams.key;
 
-        $http.post("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/project-updates", JSON.stringify(self.statusUpdate))
+        data.saveStatusUpdate(self.statusUpdate)
         .then(function(response) {
           getStatusUpdates($stateParams.key);
         }, function(response){
@@ -53,8 +53,8 @@
       }
     }
 
-    function saveProject(callback){
-      $http.post("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects", JSON.stringify(self.project))
+    function saveProject(callback) {
+      data.saveProject(self.project)
       .then(function(response) {
         callback();
       }, function(response){
@@ -64,7 +64,7 @@
     }
 
     function getStatusUpdates(key) {
-      $http.get("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/project-updates/" + key)
+      data.getStatusUpdates(key)
       .then(function(response) {
         self.statusUpdateList = response.data;
 
@@ -78,7 +78,7 @@
 
     // Load up a project if we have passed a key in the state parameters
     if ($stateParams.key) {
-      $http.get("https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test/projects/" + $stateParams.key)
+      data.getProjects($stateParams.key)
       .then(function(response) {
         self.project = response.data.Item;
 

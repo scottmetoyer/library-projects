@@ -5,11 +5,16 @@
       var urlBase = 'https://nlm8zahqm4.execute-api.us-west-1.amazonaws.com/test';
       var dataFactory = {};
 
-      dataFactory.getProjects = function() {
-        return $http.get(urlBase + '/projects');
+      dataFactory.getProjects = function(key) {
+        if (key) {
+          return $http.get(urlBase + '/projects/' + key);
+        } else {
+          return $http.get(urlBase + '/projects');
+        }
       }
 
       dataFactory.saveProject = function(project) {
+        return $http.post(urlBase + "/projects", JSON.stringify(project));
       }
 
       dataFactory.getStatusUpdates = function(key) {
@@ -17,6 +22,7 @@
       }
 
       dataFactory.saveStatusUpdate = function(status) {
+        return $http.post(urlBase + "/project-updates", JSON.stringify(status))
       }
 
       dataFactory.saveProjectStatus = function(newStatus, key) {

@@ -5,7 +5,7 @@
 
   function config($stateProvider, $locationProvider, $urlRouterProvider, $ocLazyLoadProvider) {
     // Default url
-    $urlRouterProvider.otherwise("/pages");
+    $urlRouterProvider.otherwise("/");
     $locationProvider.hashPrefix('!');
 
     $ocLazyLoadProvider.config({
@@ -16,7 +16,7 @@
     $stateProvider
       .state('pages', {
         abstract: true,
-        url: '/pages',
+        url: '/',
         templateUrl: 'views/common/layout.html',
       })
       .state('pages.in-flight', {
@@ -38,7 +38,7 @@
         }
       })
       .state('pages.on-deck', {
-        url: '/on-deck',
+        url: 'on-deck',
         templateUrl: 'views/on-deck.html',
         data: { pageTitle: 'On-deck projects' },
         resolve: {
@@ -57,7 +57,7 @@
         },
       })
       .state('pages.backlog', {
-        url: '/backlog',
+        url: 'backlog',
         templateUrl: 'views/backlog.html',
         data: { pageTitle: 'Backlog projects' },
         resolve: {
@@ -76,7 +76,7 @@
         },
       })
       .state('pages.create-project', {
-        url: '/create-project',
+        url: 'create-project',
         templateUrl: 'views/create-project.html',
         data: { pageTitle: 'Create a project' },
         resolve: {
@@ -87,7 +87,7 @@
         },
       })
       .state('pages.view-project', {
-        url: '/view-project/:key',
+        url: 'view-project/:key',
         templateUrl: 'views/view-project.html',
         data: { pageTitle: 'Project dashboard' },
         resolve: {
@@ -98,7 +98,7 @@
         },
       })
       .state('pages.archive', {
-        url: '/archive',
+        url: 'archive',
         templateUrl: 'views/archive.html',
         data: { pageTitle: 'Archived projects' },
         resolve: {
@@ -109,7 +109,7 @@
         },
       })
       .state('pages.edit-project', {
-        url: '/edit-project/:key',
+        url: 'edit-project/:key',
         templateUrl: 'views/edit-project.html',
         data: { pageTitle: 'Edit project' },
         resolve: {
@@ -142,7 +142,7 @@
         },
       })
       .state('pages.edit-task', {
-        url: '/edit-task/:id',
+        url: 'edit-task/:id',
         templateUrl: 'views/edit-recurring-task.html',
         data: { pageTitle: 'Edit task' },
         resolve: {
